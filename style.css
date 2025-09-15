@@ -1,79 +1,81 @@
-body {
-    font-family: Arial, sans-serif;
-    background: #f1f3f6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-  }
-  
-  .todo-container {
-    background: #fff;
-    padding: 30px;
-    border-radius: 12px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-    width: 320px;
-  }
-  
-  h1 {
-    text-align: center;
-    margin-bottom: 20px;
-  }
-  
-  .input-section {
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
-  }
-  
-  input[type="text"] {
-    flex: 1;
-    padding: 10px;
-    font-size: 16px;
-  }
-  
-  button {
-    padding: 10px 14px;
-    background: #007bff;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  button:hover {
-    background: #0056b3;
-  }
-  
-  ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  li {
-    background: #eee;
-    padding: 10px;
-    margin-bottom: 8px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  li span {
-    flex: 1;
-  }
-  
-  li button {
-    background: crimson;
-    padding: 5px 10px;
-    border: none;
-    color: white;
-    border-radius: 4px;
-    font-size: 14px;
-  }
-  
-  li button:hover {
-    background: darkred;
-  }
-  
+:root{
+  --bg: linear-gradient(135deg,#6a11cb,#2575fc);
+  --card:#ffffff;
+  --accent:#6a11cb;
+  --muted:#666;
+  --success:#28a745;
+  --danger:#e74c3c;
+  --glass: rgba(255,255,255,0.7);
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,system-ui,Roboto,Arial;}
+body{background:var(--bg);display:flex;align-items:center;justify-content:center;padding:24px;color:#222}
+.app{width:1100px;max-width:100%;background:var(--card);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.18);overflow:hidden;display:flex;flex-direction:column}
+header{display:flex;justify-content:space-between;align-items:center;padding:18px 24px;border-bottom:1px solid #eee}
+header h1{margin:0;font-size:20px;display:flex;gap:10px;align-items:center}
+.header-controls{display:flex;gap:10px;align-items:center}
+.header-controls select, .header-controls button {padding:8px;border-radius:8px;border:1px solid #ddd;background:#fafafa;cursor:pointer}
+main{display:flex;gap:18px;padding:18px}
+.left{flex:1}
+.right{width:340px}
+.add-panel{background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);padding:12px;border-radius:10px;margin-bottom:12px}
+.add-panel input[type="text"], .add-panel select, .add-panel input[type="date"], .add-panel input[type="time"], .add-panel input[type="number"]{
+  padding:10px;border-radius:8px;border:1px solid #ddd;margin:6px 0;font-size:14px;width:100%;
+}
+.add-panel .row{display:flex;gap:8px;align-items:center}
+.add-panel .recurring-row{margin-top:8px;display:flex;gap:8px;align-items:center}
+.add-panel .subtask-row{margin-top:8px}
+#addBtn{background:var(--accent);color:#fff;border:none;padding:10px 14px;border-radius:8px;cursor:pointer}
+#voiceBtn{background:#fff;border:1px solid #ddd;padding:8px;border-radius:8px}
+.subtask-list{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.subtask-pill{background:#f0f0f0;padding:6px 8px;border-radius:999px;font-size:13px;display:flex;gap:6px;align-items:center}
+.subtask-pill button{background:transparent;border:none;cursor:pointer;color:#888;font-weight:700}
+
+.controls{display:flex;gap:8px;align-items:center;margin:12px 0}
+.controls input{flex:1;padding:10px;border-radius:8px;border:1px solid #ddd}
+.controls select{padding:10px;border-radius:8px;border:1px solid #ddd}
+.progress{margin-left:auto;min-width:220px}
+.progress-bar{background:#eee;height:10px;border-radius:999px;margin-top:6px;overflow:hidden}
+#progressFill{height:100%;width:0%;background:linear-gradient(90deg,var(--accent),#2575fc)}
+
+.task-list{list-style:none;padding:0;margin:0}
+.task-item{display:flex;justify-content:space-between;gap:8px;padding:10px;border-radius:10px;margin-bottom:8px;background:#fafafa;border:1px solid #f0f0f0;align-items:center;transition:0.18s}
+.task-left{display:flex;gap:10px;align-items:center;flex:1}
+.checkbox{width:18px;height:18px;border-radius:4px;border:2px solid #ddd;display:inline-flex;align-items:center;justify-content:center;cursor:pointer}
+.checkbox.checked{background:var(--accent);color:#fff;border-color:var(--accent)}
+.task-title{font-size:15px;cursor:pointer}
+.task-title.completed{text-decoration:line-through;color:#999}
+.task-meta{font-size:12px;color:var(--muted);margin-top:4px}
+.task-actions{display:flex;gap:6px}
+.task-actions button{padding:6px 8px;border-radius:8px;border:none;cursor:pointer}
+.edit-btn{background:#ffc107;color:#111}
+.delete-btn{background:var(--danger);color:#fff}
+.tag{padding:4px 8px;border-radius:999px;font-size:12px;background:#f1f1f1;margin-left:6px}
+
+.calendar-box{background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);padding:12px;border-radius:10px;margin-bottom:12px}
+.cal-header{display:flex;align-items:center;justify-content:space-between}
+.calendar-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin-top:10px}
+.cal-cell{min-height:66px;border-radius:8px;padding:6px;background:#fff;border:1px dashed #f2f2f2;font-size:13px;position:relative}
+.cal-cell .date-num{position:absolute;top:6px;right:8px;font-size:12px;color:#bbb}
+.cal-cell .has-task{display:block;margin-top:22px;font-size:12px;color:var(--accent)}
+.day-tasks{margin-top:10px}
+.timer-box{background:linear-gradient(180deg,rgba(0,0,0,0.02),transparent);padding:12px;border-radius:10px}
+.timer-display{font-size:32px;text-align:center;padding:8px}
+.timer-controls{display:flex;gap:8px;justify-content:center;margin-bottom:8px}
+.timer-controls button{padding:8px 12px;border-radius:8px;border:none;cursor:pointer;background:var(--accent);color:#fff}
+
+footer{padding:12px 18px;border-top:1px solid #eee;display:flex;justify-content:space-between;font-size:13px;color:#666}
+.hint{display:block;color:#777;margin-top:8px;font-size:12px}
+
+/* Dark mode */
+body.dark{background:linear-gradient(135deg,#0f1724,#0b1220);color:#ddd}
+body.dark .app{background:#071022;color:#ddd}
+body.dark .add-panel, body.dark .calendar-box, body.dark .timer-box{background:rgba(255,255,255,0.03)}
+body.dark input, body.dark select{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);color:#ddd}
+body.dark .task-item{background:rgba(255,255,255,0.02);border:1px solid rgba(255,255,255,0.04)}
+
+@media (max-width:1000px){
+  .app{flex-direction:column}
+  main{flex-direction:column}
+  .right{width:100%}
+}
