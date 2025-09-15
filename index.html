@@ -1,19 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Simple TODO List</title>
-  <link rel="stylesheet" href="style.css"/>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pro TODO — Frontend Only</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="todo-container">
-    <h1>📋 TODO List</h1>
-    <div class="input-section">
-      <input type="text" id="taskInput" placeholder="Enter a new task"/>
-      <button onclick="addTask()">Add</button>
-    </div>
-    <ul id="taskList"></ul>
+  <div class="app">
+    <header>
+      <h1>✅ Pro TODO</h1>
+      <div class="header-controls">
+        <div class="theme-controls">
+          <select id="themeSelect" title="Choose theme">
+            <option value="default">Theme — Violet</option>
+            <option value="green">Green</option>
+            <option value="orange">Orange</option>
+          </select>
+          <button id="darkToggle" title="Toggle dark/light">🌙</button>
+        </div>
+        <div class="quick-actions">
+          <button id="exportBtn">Export JSON</button>
+          <button id="exportCsvBtn">Export CSV</button>
+          <input id="importFile" type="file" accept=".json" style="display:none"/>
+          <button id="importBtn">Import</button>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section class="left">
+        <div class="add-panel">
+          <input id="taskTitle" placeholder="What do you want to do?" />
+          <div class="row">
+            <input id="taskDueDate" type="date" />
+            <input id="taskDueTime" type="time" />
+            <select id="taskPriority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="row">
+            <input id="taskCategory" placeholder="Category (comma separated tags)" />
+            <button id="voiceBtn" title="Add by voice">🎤</button>
+            <button id="addBtn">Add Task</button>
+          </div>
+
+          <div class="recurring-row">
+            <label>Repeat:</label>
+            <select id="taskRepeat">
+              <option value="none">None</option>
+              <option value="daily">Daily</option>
+              <option value="weekly">Weekly</option>
+              <option value="monthly">Monthly</option>
+            </select>
+          </div>
+
+          <div class="subtask-row">
+            <input id="subtaskInput" placeholder="Subtask (press Enter to add)"/>
+            <div id="subtaskList" class="subtask-list"></div>
+          </div>
+
+          <small class="hint">Tip: Double click any task title to edit. Click title to toggle completed.</small>
+        </div>
+
+        <div class="controls">
+          <input id="searchInput" placeholder="Search tasks..." />
+          <select id="filterSelect">
+            <option value="all">All</option>
+            <option value="active">Active</option>
+            <option value="completed">Completed</option>
+            <option value="priority_high">High Priority</option>
+            <option value="priority_medium">Medium Priority</option>
+            <option value="priority_low">Low Priority</option>
+          </select>
+          <select id="sortSelect">
+            <option value="created_desc">Newest</option>
+            <option value="created_asc">Oldest</option>
+            <option value="due_asc">Due Soon</option>
+            <option value="due_desc">Due Later</option>
+            <option value="priority_desc">Priority</option>
+          </select>
+
+          <div class="progress">
+            <div class="progress-text">Progress: <span id="progressPct">0%</span></div>
+            <div class="progress-bar"><div id="progressFill"></div></div>
+          </div>
+        </div>
+
+        <ul id="taskList" class="task-list"></ul>
+      </section>
+
+      <aside class="right">
+        <div class="calendar-box">
+          <div class="cal-header">
+            <button id="prevMonth">&lt;</button>
+            <div id="monthLabel"></div>
+            <button id="nextMonth">&gt;</button>
+          </div>
+          <div id="calendar" class="calendar-grid"></div>
+          <div id="dayTasks" class="day-tasks"></div>
+        </div>
+
+        <div class="timer-box">
+          <h3>Pomodoro Timer</h3>
+          <div class="timer-display"><span id="timerMinute">25</span>:<span id="timerSecond">00</span></div>
+          <div class="timer-controls">
+            <button id="startTimer">Start</button>
+            <button id="pauseTimer">Pause</button>
+            <button id="resetTimer">Reset</button>
+          </div>
+          <div class="timer-settings">
+            <label>Work</label><input id="workMins" type="number" value="25" min="1" />
+            <label>Break</label><input id="breakMins" type="number" value="5" min="1" />
+          </div>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      <div>Built with ❤️ — Frontend only. Notifications require permission.</div>
+      <div class="footer-note">Some advanced features (sync/collab) require a backend.</div>
+    </footer>
   </div>
 
   <script src="script.js"></script>
